@@ -6,7 +6,6 @@ X<br/>
 <!-- (adicionar nome aqui)<br/> -->
 
 <b>Artwork</b>:<br/>
-<br/>
 X<br/>
 <!-- (adicionar nome aqui)<br/> -->
 
