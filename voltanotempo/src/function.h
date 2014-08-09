@@ -2,7 +2,7 @@
 #define _FUNCTIONS
 
 #define TOMICROSECONDS 100000
-#define MAX_CONT_JUMP 3
+#define MAX_CONT_JUMP 2
 #define OFFSET_MOVE_Y 30        // movimento do pulo
 #define OFFSET_MOVE_X 10        // movimento direita/esquerda
 #define PLATAFORMA_Y 316    /// altura da plataforma (onde o player anda)
@@ -26,9 +26,10 @@ SDL_Surface* set_sdlSurface(SDL_Rect *offset, SDL_Surface* screen, Uint32 key, c
 int *init_click(int *click);
 
 /// Move para cima
-int *function_up(int *vetor, int *click, SDL_Rect *offset, int lado);
+int *function_up(int *vetor, int *click, SDL_Rect *offset, int lado, bool canJump);
 
 // Verifica se está habilitado a pular (ou se já executo o maximo de pulos permitidos)
+bool isAbleToJump(int *cont);
 
 /// Move para baixo
 void function_down(int *vetor);

@@ -32,8 +32,9 @@ SDL_Surface* set_sdlSurface(SDL_Rect *offset, SDL_Surface* screen, Uint32 key, c
     return img;
 }
 
-int *function_up(int *vetor, int *click, SDL_Rect *offset, int lado) {
+int *function_up(int *vetor, int *click, SDL_Rect *offset, int lado, bool canJump) {
     if ((*offset).y < SCREEN_HEIGHT) {
+        if (canJump) {
             (*vetor)++;
             if (lado < 1) {
                 click[1] = -1;
@@ -50,7 +51,18 @@ int *function_up(int *vetor, int *click, SDL_Rect *offset, int lado) {
                 (*offset).y -= OFFSET_MOVE_Y;
             }
         }
+    }
     return click;
+}
+
+bool isAbleToJump(int *cont) {
+    if (*cont < MAX_CONT_JUMP) {
+        *cont += 1;
+        return true;
+    } else {
+        *cont = MAX_CONT_JUMP;
+        return false;
+    }
 }
 
 void function_down(int *vetor) {
