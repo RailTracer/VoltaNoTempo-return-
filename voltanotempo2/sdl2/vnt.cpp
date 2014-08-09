@@ -1,6 +1,8 @@
-#include "function.h"
+#include "vnt.h"
+#include "sdl_basics.h"
 
 int *init_click(int *click) {
+    //int click[13] = {0, -1, -1, -1, 0, -1, -1, -1, 0, -1, -1 ,-1, 0};
 
     click[0] = 0;
     click[1] = -1;
@@ -19,21 +21,9 @@ int *init_click(int *click) {
     return click;
 }
 
-void set_sdlRect(SDL_Rect *offset, int x, int y) {
-    (*offset).x = x;
-    (*offset).y = y;
-}
-
-// BUG
-SDL_Surface* set_sdlSurface(SDL_Rect *offset, SDL_Surface* screen, Uint32 key, const char* str) {
-    SDL_Surface *img = SDL_LoadBMP(str);
-    SDL_SetColorKey(img, SDL_SRCCOLORKEY, key);
-    SDL_BlitSurface(img, 0, screen, offset);
-    return img;
-}
-
-int *function_up(int *vetor, int *click, SDL_Rect *offset, int lado) {
+int *function_up(int *vetor, int *click, SDL_Rect *offset, int lado, bool canJump) {
     if ((*offset).y < SCREEN_HEIGHT) {
+        if (canJump) {
             (*vetor)++;
             if (lado < 1) {
                 click[1] = -1;
@@ -50,11 +40,22 @@ int *function_up(int *vetor, int *click, SDL_Rect *offset, int lado) {
                 (*offset).y -= OFFSET_MOVE_Y;
             }
         }
+    }
     return click;
 }
 
+bool isAbleToJump(int *cont) {
+    if (*cont < MAX_CONT_JUMP) {
+        *cont += 1;
+        return true;
+    } else {
+        *cont = MAX_CONT_JUMP;
+        return false;
+    }
+}
+
 void function_down(int *vetor) {
-        *vetor = 0;
+    *vetor = 0;
 }
 
 void function_exit(bool *done) {
@@ -64,7 +65,7 @@ void function_exit(bool *done) {
 }
 
 int *function_right(int *vetor, int *click, SDL_Rect *offset, int *lado) {
-    if ((*offset).x < SCREEN_WIDTH - 3*OFFSET_MOVE_X) {
+    if ((*offset).x < SCREEN_WIDTH - 3 * OFFSET_MOVE_X) {
         *vetor += 3;
         *lado = 0;
         if ((*offset).y < 316) {
@@ -81,12 +82,8 @@ int *function_right(int *vetor, int *click, SDL_Rect *offset, int *lado) {
             click[0]++;
             (*offset).x += 10;
         }
-
-        if((*offset).y + 3 < PLATAFORMA_Y) {
-            (*offset).y += 3;
-        }
     } else {
-        (*offset).x  = SCREEN_WIDTH - 3*OFFSET_MOVE_X;
+        (*offset).x = SCREEN_WIDTH - 3 * OFFSET_MOVE_X;
         printf("Passou de fase...\n");
     }
     return click;
@@ -110,11 +107,17 @@ int *function_left(int *vetor, int *click, SDL_Rect *offset, int *lado) {
             click[1]++;
             (*offset).x -= OFFSET_MOVE_X;
         }
-        if((*offset).y + 3 < PLATAFORMA_Y) {
-            (*offset).y += 3;
-        }
     }
     return click;
+}
+
+int updateVector(int *vetor_x, int *vetor_y, int size) {
+    for (int i = 0; i < size; i++) {
+        if (vetor_x[i] == 0 && vetor_y[i] == 0) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 void imprimeVariaveisTeste(SDL_Rect offset, SDL_Rect amigo, SDL_Rect inimigo, int cont) {
@@ -122,48 +125,4 @@ void imprimeVariaveisTeste(SDL_Rect offset, SDL_Rect amigo, SDL_Rect inimigo, in
         printf("cont = %d\na.x = %d  e a.y = %d\no.x = %d  e o.y = %d\ni.x = %d  e i.y = %d\n", cont, amigo.x, amigo.y, offset.x, offset.y, inimigo.x, inimigo.y);
         printf("==========================================================\n");
     }
-}
-
-bool initSDL_Surface(SDL_Surface** pointer, const char *str) {
-
-    *pointer = SDL_LoadBMP(str);
-    return (*pointer != NULL) ? true : false;
-}
-
-void freeSDL_Surface(SDL_Surface** pointer) {
-
-
-    if (*pointer != NULL) {
-        SDL_FreeSurface(*pointer);
-        *pointer = NULL;
-    }
-}
-
-void delay(float seconds) {
-    usleep(seconds * TOMICROSECONDS);
-}
-
-void clean_up(SDL_Surface **surface, int *pointer, int qtde) {
-    for (int i = 0; i < qtde; i++) {
-        if (surface[i] != NULL) {
-            freeSDL_Surface(&surface[i]);
-            surface[i] = NULL;
-        }
-    }
-
-    if (pointer != NULL) {
-        free(pointer);
-        pointer = NULL;
-    }
-}
-
-bool load_files(SDL_Surface **surface, const char **str, int qtde) {
-    for(int i=0; i<qtde; i++) {
-        surface[i] = SDL_LoadBMP(str[i]);
-        if(surface[i] == NULL) {
-            return false;
-        }
-    }
-
-    return true;
 }

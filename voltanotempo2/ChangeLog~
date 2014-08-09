@@ -1,0 +1,36 @@
+CHANGELOG
+=========
+ v1.01 
+
+ - Retorno para funções que mexem no click
+ - Mudança no click[13] para *click (de mesmo tamanho)
+ - Criação de uma função para inicializar o *click 
+ - Criada a função para verificar se existe as imagens 
+ - Adicionado retorno -1 (qndo da erro) e exibição de uma mensagem com um numero para localizar o erro   
+ - Havia uma imagem sendo carregada que não existia ("0.bmp")  
+ - Bug(High) consertado 
+ - movimentação do personagem pela tecla pressionada  
+ - adicionado funcao delay
+ - 
+BUGS
+====
+>> High:
+	NONE
+
+>> Medium: 
+ 	Sai da tela pela direita 
+
+>> Low:
+ 	Retorna do salto com o frame errado (como se tivesse voando)  
+
+>>Solved:
+ 	click para baixo sai da funcao 
+
+<!--
+# COMO CLASSIFICO AS PRIORIDADES ? (Noções -- apenas para ter noção na hora de classificar o bug)
+# high -- Se compromete e/ou interrompe o funcionamento do game com execução incompleta (sem sucesso) 
+# medium -- Se compromete a funcionamento adequado do game, porém executa com sucesso
+# low -- Erros de performance/visual/outros de baixa relevancia para a execução e funcionamento do game
+# (VER sampleBug como exemplo de como colocar o bug)
+-->
+
