@@ -2,10 +2,11 @@ volta-no-tempo
 ==============
 <b>Desenvolvedores</b>:
 <br/>
-Lucas Vieira Costa Nicolau<br/>
+X<br/>
 <!-- (adicionar nome aqui)<br/> -->
 
 <b>Artwork</b>:<br/>
+X<br/>
 <!-- (adicionar nome aqui)<br/> -->
 
 <!-- (adicionar outras opcoes aqui)<br/> -->
@@ -13,5 +14,5 @@ Lucas Vieira Costa Nicolau<br/>
 
 VERSION
 =======
-<b>1.01</b><br/>
+<b>6.7</b><br/>
 
