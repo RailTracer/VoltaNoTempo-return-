@@ -1,0 +1,27 @@
+volta-no-tempo
+==============
+<b>Desenvolvedores</b>:
+<br/>
+Lucas Vieira Costa Nicolau<br/>
+<!-- (adicionar nome aqui)<br/> -->
+
+<b>Artwork</b>:<br/>
+<!-- (adicionar nome aqui)<br/> -->
+
+<!-- (adicionar outras opcoes aqui)<br/> -->
+
+
+VERSION
+=======
+<b>1.01</b><br/>
+<!--<b>   </b><br/>-->
+
+<!--
+# COMO CLASSIFICO AS PRIORIDADES ? (Noções -- apenas para ter noção na hora de classificar o bug)
+# high -- Se compromete e/ou interrompe o funcionamento do game com execução incompleta (sem sucesso) ;</li></br>
+# medium -- Se compromete a funcionamento adequado do game, porém executa com sucesso ;</li></br>
+# low -- Erros de performance/visual/outros de baixa relevancia para a execução e funcionamento do game;</li></br>
+# (VER sampleBug como exemplo de como colocar o bug)
+-->
+
+<!-- EOF  -->
